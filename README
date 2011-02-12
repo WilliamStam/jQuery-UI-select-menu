@@ -1,0 +1,74 @@
+------ Changes ------
+
+0.0.3 - 2011-01-01 - made it compatible with UI.. now it makes use of  ui's theme
+
+
+Usage and examples:
+ 
+	$("select").selectmenu({
+		speed: 400,
+		maxHeight: 300,  
+		direction: "", // dont set to use the collision flip method. available options "up / down / blank ( "" )"
+		before: function(){
+			alert("im running at the start") // can use $(this) here
+		},
+		after: function(){
+			alert("im running at the end of the plugin when its all been set up") // can use $(this) here
+		},
+		change: function(){
+			alert("my new value is" + $(this).val())
+		}	 
+	});
+ 
+if you do stuff to the list inside the after.. like hide some results.. then re-position the menu by calling
+
+	$("#myselect").selectmenu("position")
+
+this re-aligns the menu to its propper place	
+
+---------------------------------------------------------------------------------	
+
+CSS needed for the menus feel free to change the colours etc in this.. 
+
+	.ui-selectmenu-area {
+		position:relative;
+	}
+	.ui-selectmenu-list  {
+		list-style:none;
+		list-style-position:outside;
+		padding:0px;
+		margin:0px;
+		position:absolute;
+		overflow-y:auto;
+		text-align:left;
+		display:block;
+		visibility:hidden;
+	}
+	.ui-selectmenu-list ul {
+		list-style:none;
+		list-style-position:outside;	
+		padding:0px;
+		margin:0px;
+	}
+	.ui-selectmenu-list li {
+		border:transparent 1px solid;
+	}
+	
+	.ui-selectmenu-list li:not(.group) {
+		padding:3px;
+		cursor:pointer;
+	}
+	.ui-selectmenu-list li.group li {
+		padding-left:10px;
+	}
+	
+	
+	/* change to however you want it to look like */
+	.ui-selectmenu-list .ui-widget-header { 
+		padding:3px;
+		font-variant:small-caps;
+		padding-left:2px;
+		margin-bottom:1px;		 
+	}
+
+This file was modified by JetBrains PhpStorm (PhpStorm) PS-103.78 for binding GitHub repository

@@ -127,6 +127,14 @@
 			padding            : 10px;
 
 		}
+		#src {
+			width:99%;
+			-moz-box-shadow    : inset 0 0 10px rgba(0, 0, 0, 0.3);
+			-webkit-box-shadow : inset 0 0 10px rgba(0, 0, 0, 0.3);
+			box-shadow         : inset 0 0 10px rgba(0, 0, 0, 0.3);
+			border             : #999 1px solid;
+			padding            : 10px;
+		}
 
 		-->
 	</style>
@@ -329,6 +337,11 @@ $("#pID").selectmenu({
 		</td>
 	</tr>
 </table>
+<h2>Source</h2>
+<pre id="srcpre"></pre>
+	<textarea readonly id="src">
+	</textarea>
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 
@@ -336,6 +349,15 @@ $("#pID").selectmenu({
 
 <script language="javascript">
 	$(document).ready(function (){
+
+		$.get("jquery.ui.selectmenu.js",function(d){
+			var h = $("#srcpre").html(d).height();
+
+			$("#srcpre").hide();
+			$("#src").val(d).height(h);
+		});
+
+
 		$("select[name='select1']").selectmenu();
 		$("select[name='select2']").selectmenu({
 			direction: "down",

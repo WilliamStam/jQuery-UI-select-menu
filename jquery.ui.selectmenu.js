@@ -16,6 +16,7 @@
 
 ;
 (function($){
+	var incriment=0;
 	$.widget("ui.selectmenu",{
 		// ----- Widget options and defaults -----
 		options: {
@@ -35,8 +36,8 @@
 			var self=this,
 				o=self.options,
 				el=self.element;
-
-			var zindex=(el.css("zindex") )?el.css("zindex"):0;
+			incriment++;
+			var zindex=(el.css("zindex") )?el.css("zindex"):10;
 
 			this.before();	// run this function before anything else happens
 
@@ -71,7 +72,8 @@
 
 			// ----- the button and its events -----
 			this.btn=$('<button type="button">loading...</button>').text($("option:selected",el).text()).addClass("ui-selectmenu-btn").css({
-				width: makewidth
+				'width': makewidth,
+				'zindex': zindex-1
 			}).button({
 			              icons: {
 				              secondary: icon
@@ -86,25 +88,31 @@
 			var collision=(!o.direction||o.direction!='auto')?"none":""; // if direction isnt set in the options the list uses collision flip
 
 			// ----- building the main list. adding the positioning variables as data to be used a little later	------
+			var selectname =el.attr("id");
+			selectname = (selectname)?selectname:"ui-slectmenu-"+incriment+Math.floor(Math.random()*1000);
 			this.list=$('<ul/>',{
-				'id': el.attr("id")+'-list',
-				'class': "ui-selectmenu-list shadow border ui-corner-all ui-widget-content"
-			}).data({
-			            "direction": o.direction?o.direction:"",
-			            "speed":o.speed,
-			            "collision":collision,
-			            "zindex": zindex,
-			            "element":this.element
+							'id': selectname +'-list',
+							'class': "ui-selectmenu-list shadow border ui-corner-all ui-widget-content"
+						})
+						.data({
+							"direction": o.direction?o.direction:"",
+							"speed":o.speed,
+							"collision":collision,
+							"zindex": zindex,
+							"element":this.element
+						})
+						.append(listdata)
+						.css({
+							"position":"absolute",
+							"width": this.btn.outerWidth(),
+							"max-height":o.maxHeight,
+							"z-index": this.btn.css("zindex")+1000
 
-			        }).append(listdata).css({
-			                                    width: this.btn.outerWidth(),
-			                                    "max-height":o.maxHeight,
-			                                    zindex: this.btn.css("zindex")+1
-			                                });
+						});
 			// ----- building the main list. adding the positioning variables as data to be used a little later	------
 
 			// ----- wrap the whole thing inside a div. apply any styles the select would of had.. and start adding the elements to the dom -----
-			this.selectarea=$('<span />').addClass("ui-widget ui-selectmenu-area ").append(this.btn).append(this.list).insertAfter(el).attr("style",el.attr("style"));
+			this.selectarea=$('<span />').addClass("ui-widget ui-selectmenu-area ").css({'zindex':zindex}).append(this.btn).append(this.list).insertAfter(el).attr("style",el.attr("style"));
 			// ----- wrap the whole thing inside a div. apply any styles the select would of had.. and start adding the elements to the dom -----
 
 			this.element.hide(); // hide the select menu

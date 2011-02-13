@@ -109,6 +109,11 @@ h2 {
 	height             : 30px;
 
 }
+h2 a {
+	font-size:12px;
+	font-weight:normal;
+	letter-spacing : 2px;
+}
 
 h3 {
 	border-bottom : #ccc 1px dotted;
@@ -369,6 +374,60 @@ fieldset {
 	<h2>Documentation</h2>
 
 	<div class="content" style="top:40px; padding:10px;">
+
+		<h3>CSS needed for the menu</h3>
+<pre class="brush: css">
+.ui-selectmenu-area {
+	position : relative;
+}
+.ui-selectmenu-btn {
+	position:relative;
+}
+
+.ui-selectmenu-list {
+	list-style          : none;
+	list-style-position : outside;
+	padding             : 0px;
+	margin              : 0px;
+	position            : absolute;
+	overflow-y          : auto;
+	text-align          : left;
+	display             : block;
+	visibility          : hidden;
+
+}
+
+.ui-selectmenu-list ul {
+	list-style          : none;
+	list-style-position : outside;
+	padding             : 0px;
+	margin              : 0px;
+}
+
+.ui-selectmenu-list li {
+	border : transparent 1px solid;
+}
+
+.ui-selectmenu-list .ui-widget-header {
+
+	padding       : 3px;
+	font-variant  : small-caps;
+	padding-left  : 2px;
+	margin-bottom : 1px;
+
+}
+
+.ui-selectmenu-list li:not(.group) {
+	padding : 3px;
+
+	cursor  : pointer;
+}
+
+.ui-selectmenu-list li.group li {
+	padding-left : 10px;
+}
+</pre>
+
 		<h3>Usage</h3>
 <pre class="brush: js">
 $("select").selectmenu({
@@ -464,7 +523,7 @@ $("select").selectmenu({
 </div>
 
 <div id="tabs-3">
-	<h2>Source Code</h2>
+	<h2>Source Code  - <a href="https://github.com/SugaSlide/jQuery-UI-select-menu/tree/gh-pages">https://github.com/SugaSlide/jQuery-UI-select-menu/tree/gh-pages</a></h2>
 
 	<div class="content" style="top:40px;">
 
@@ -484,6 +543,7 @@ $("select").selectmenu({
 <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
 <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
 <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js" type="text/javascript"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="jquery.ui.selectmenu.js"></script>
 <script>

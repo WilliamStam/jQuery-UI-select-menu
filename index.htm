@@ -464,8 +464,8 @@ $("select").selectmenu({
 
 	<div class="content" style="top:40px;">
 
-		<script type="syntaxhighlighter" class="brush: js" id="src">
-		</script>
+		<pre class="brush: js" id="src">
+		</pre>
 	</div>
 
 </div>
@@ -489,14 +489,17 @@ $("select").selectmenu({
 
 		$.get("jquery.ui.selectmenu.js",function(d){
 			var h=$("#content").height()-80;
-			$("#src").html('<![CDATA['+d+']]>');
+			$("#src").html(d);
+			syntaxhighlightall();
 		});
 
 	});
-	SyntaxHighlighter.config.bloggerMode=true;
-	SyntaxHighlighter.defaults['toolbar']=false;
-	SyntaxHighlighter.defaults['gutter']=false;
-	SyntaxHighlighter.all();
+	function syntaxhighlightall(){
+		SyntaxHighlighter.config.bloggerMode=true;
+		SyntaxHighlighter.defaults['toolbar']=false;
+		SyntaxHighlighter.defaults['gutter']=false;
+		SyntaxHighlighter.all();
+	}
 </script>
 <script>
 	$(document).ready(function(){

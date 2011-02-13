@@ -1,5 +1,5 @@
 /*
- * jQuery UI Selectmenu 0.0.4 (2011-02-10)
+ * jQuery UI Select menu
  *
  * Copyright (c) 2011 AWStam
  * 
@@ -27,13 +27,16 @@
 			after: function(){},
 			change: function(){}
 		},
+		version: function(){
+			return "0.0.5";
+		},
 		// ----- create the instance -----
 		_create: function(){
 			var self=this,
 				o=self.options,
 				el=self.element;
 
-			var zindex=(el.css("zindex") )?el.css("zindex"):0
+			var zindex=(el.css("zindex") )?el.css("zindex"):0;
 
 			this.before();	// run this function before anything else happens
 

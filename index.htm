@@ -1,283 +1,316 @@
-<!DOCTYPE HTML>
-
+<!doctype html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>jQuery UI select menu</title>
-	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css">
-	<style type="text/css">
-		<!--
-		.ui-selectmenu-area {
-			position : relative;
-		}
+<title>jQuery UI Select Menu</title>
+<META name="author" content="William Stam">
+<META name="date" content="2011/02/13 2:06 PM">
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css">
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+<!--
 
-		.ui-selectmenu-list {
-			list-style          : none;
-			list-style-position : outside;
-			padding             : 0px;
-			margin              : 0px;
-			position            : absolute;
-			overflow-y          : auto;
-			text-align          : left;
-			display             : block;
-			visibility          : hidden;
-		}
+.past {
+	color      : #999;
+	font-style : italic;
+}
 
-		.ui-selectmenu-list ul {
-			list-style          : none;
-			list-style-position : outside;
-			padding             : 0px;
-			margin              : 0px;
-		}
+article {
+	top : 100px;
+}
 
-		.ui-selectmenu-list li {
-			border : transparent 1px solid;
-		}
+header {
+	position : absolute;
+	top      : 0px;
+	left     : 0px;
+	right    : 0px;
+}
 
-		.ui-selectmenu-list .ui-widget-header {
+footer {
+	position : absolute;
+	bottom   : 0px;
+	left     : 0px;
+	right    : 0px;
+}
 
-			padding       : 3px;
-			font-variant  : small-caps;
-			padding-left  : 2px;
-			margin-bottom : 1px;
+body {
+	position : absolute;
+	top      : 0;
+	left     : 0;
+	right    : 0;
+	bottom   : 0;
+	overflow : hidden;
+	padding  : 0;
+	margin   : 0;
+}
 
-		}
+.content {
+	position   : absolute;
+	top        : 0;
+	left       : 0;
+	right      : 0;
+	bottom     : 0;
+	overflow-y : auto;
+	overflow-x : hidden;
 
-		.ui-selectmenu-list li:not(.group) {
-			padding : 3px;
+}
 
-			cursor  : pointer;
-		}
+#content {
+	position : absolute;
+	top      : 70px;
+}
 
-		.ui-selectmenu-list li.group li {
-			padding-left : 10px;
-		}
+body, td, th {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size   : 12px;
+}
 
-		.past {
-			color      : #999;
-			font-style : italic;
-		}
+h1, h2, h3, h4 {
+	font-family : times, Times New Roman, times-roman, georgia, serif;
+	color       : #444;
+	margin      : 0 0 10px 0;
 
-		article {
-			top : 100px;
-		}
+}
 
-		header {
-			position : absolute;
-			top      : 0px;
-			left     : 0px;
-			right    : 0px;
-		}
+h1 {
 
-		footer {
-			position : absolute;
-			bottom   : 0px;
-			left     : 0px;
-			right    : 0px;
-		}
+	margin         : 0;
+	padding        : 0;
+	text-shadow    : 1px 1px 1px #fff;
+	font-size      : 46px;
+	line-height    : 70px;
+	height         : 70px;
+	letter-spacing : -2px;
+	font-weight    : bold;
 
-		body, td, th {
-			font-family : Arial, Helvetica, sans-serif;
-			font-size   : 12px;
-		}
+	text-align     : left;
+	display        : block;
 
-		h1, h2, h3, h4 {
-			font-family : times, Times New Roman, times-roman, georgia, serif;
-			color       : #444;
+	padding-left   : 10px;
+	background     : #CCC; /* for non-css3 browsers */
+	background     : -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#e1e1e1)); /* for webkit browsers */
+	background     : -moz-linear-gradient(top, #cccccc, #e1e1e1); /* for firefox 3.6+ */
 
-		}
+}
 
-		h1 {
+h1 span {
+	color : #f66;
+}
 
-			margin           : 20px 0 10px 0;
-			padding          : 10px 0px 16px 0px;
-			text-shadow      : 1px 1px 1px #000;
-			font-size        : 46px;
-			line-height      : 44px;
-			letter-spacing   : -2px;
-			font-weight      : bold;
+h2 {
+	font-size          : 22px;
+	background-color   : #e1e1e1;
 
-			text-align       : left;
-			display          : block;
-			background-color : white;
+	margin             : -14px -18px 15px -18px;
+	padding            : 4px 20px;
+	text-shadow        : 1px 1px 1px #FFF;
+	-moz-box-shadow    : 0px 1px 5px #999;
+	-webkit-box-shadow : 0px 1px 5px #999;
+	box-shadow         : 0px 1px 5px #999;
+	height             : 30px;
 
-			padding-left     : 10px;
-			border-bottom    : #e1e1e1 1px solid;
+}
 
-		}
+h3 {
+	border-bottom : #ccc 1px dotted;
+	margin-top    : 20px;
+}
 
-		h1 span {
-			color : #f66;
-		}
+#tabs {
+	position : absolute;
+	top      : 0;
+	left     : 0;
+	bottom   : 0;
+	right    : 0;
+	overflow : hidden;
+}
 
-		h2 {
-			font-size : 22px;
-		}
+.tabs-bottom {
+	position : relative;
+}
 
-		table td {
-			padding       : 5px;
-			border-bottom : #e1e1e1 1px dotted;
-		}
+.tabs-bottom .ui-tabs-panel {
 
-		pre {
-			-moz-box-shadow    : inset 0 0 10px rgba(0, 0, 0, 0.3);
-			-webkit-box-shadow : inset 0 0 10px rgba(0, 0, 0, 0.3);
-			box-shadow         : inset 0 0 10px rgba(0, 0, 0, 0.3);
-			border             : #999 1px solid;
-			padding            : 10px;
+	overflow : hidden;
+}
 
-		}
-		#src {
-			width:99%;
-			-moz-box-shadow    : inset 0 0 10px rgba(0, 0, 0, 0.3);
-			-webkit-box-shadow : inset 0 0 10px rgba(0, 0, 0, 0.3);
-			box-shadow         : inset 0 0 10px rgba(0, 0, 0, 0.3);
-			border             : #999 1px solid;
-			padding            : 10px;
-		}
+.tabs-bottom .ui-tabs-nav {
+	position : absolute !important;
+	left     : 0;
+	bottom   : 0;
+	right    : 0;
+	padding  : 0;
+}
 
-		-->
-	</style>
+.tabs-bottom .ui-tabs-nav li {
+	margin-top          : -2px !important;
+	margin-bottom       : 1px !important;
+	border-top          : none;
+	border-bottom-width : 1px;
+}
+
+.ui-tabs-selected {
+	margin-top : -3px !important;
+}
+
+.ui-tabs.ui-widget-content {
+	border : none;
+}
+
+.ui-tabs-panel {
+	position : absolute;
+	bottom   : 35px;
+	top      : 0;
+	left     : 0;
+	right    : 0;
+
+}
+
+.ui-icon.inline {
+	display       : inline-block;
+	margin-bottom : -3px;
+	margin-right  : 10px;
+}
+
+.syntaxhighlighter {
+	margin             : 10px;
+	padding            : 5px;
+	border             : #ccc 1px dotted;
+	-moz-box-shadow    : inset 0px 1px 10px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow : inset 0px 1px 10px rgba(0, 0, 0, 0.1);
+	box-shadow         : inset 0px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+table td {
+	padding       : 5px;
+	border-bottom : #e1e1e1 1px dotted;
+}
+
+table th {
+	text-align       : left;
+	background-color : #e1e1e1;
+	padding          : 5px;
+}
+
+.ui-selectmenu-area {
+	position : relative;
+}
+
+.ui-selectmenu-list {
+	list-style          : none;
+	list-style-position : outside;
+	padding             : 0px;
+	margin              : 0px;
+	position            : absolute;
+	overflow-y          : auto;
+	text-align          : left;
+	display             : block;
+	visibility          : hidden;
+}
+
+.ui-selectmenu-list ul {
+	list-style          : none;
+	list-style-position : outside;
+	padding             : 0px;
+	margin              : 0px;
+}
+
+.ui-selectmenu-list li {
+	border : transparent 1px solid;
+}
+
+.ui-selectmenu-list .ui-widget-header {
+
+	padding       : 3px;
+	font-variant  : small-caps;
+	padding-left  : 2px;
+	margin-bottom : 1px;
+
+}
+
+.ui-selectmenu-list li:not(.group) {
+	padding : 3px;
+
+	cursor  : pointer;
+}
+
+.ui-selectmenu-list li.group li {
+	padding-left : 10px;
+}
+
+fieldset {
+	margin-bottom : 20px;
+}
+
+-->
+</style>
+
 </head>
-
 <body>
-<h1>jQuery UI <span>select</span> menu</h1>
-<select name="select1">
-	<option value="1">select 1</option>
-	<option value="2">select 2</option>
-	<option value="3">select 3</option>
-	<option value="4">select 4</option>
-</select>
+<h1>jQuery UI <span>Select</span> menu</h1>
 
-<h2>Usage</h2>
-<pre>
-$("select.down").selectmenu({
-	speed: 400,
-	maxHeight: 300,
-	direction: "auto",
-	width:"",
-	before: function(){ ... },
-	after: function(){ ... },
-	change: function(){ ... }
-});
-</pre>
-<h2>Options</h2>
-<table>
-	<tr>
-		<td>Option</td>
-		<td>Type</td>
-		<td>Description</td>
-	</tr>
-	<tr>
-		<td>Speed</td>
-		<td>numeric</td>
-		<td>animation speed (fade in/out)</td>
-	</tr>
-	<tr>
-		<td>maxHeight</td>
-		<td>numeric</td>
-		<td>the maximum height of the menu</td>
-	</tr>
-	<tr>
-		<td>direction</td>
-		<td>string</td>
-		<td>"up", "down", "auto" - if you dont want the menu to auto decide which way it must flip</td>
-	</tr>
-	<tr>
-		<td>width</td>
-		<td>numeric</td>
-		<td>if you want the menu to be a specific width. in pixels</td>
-	</tr>
-	<tr>
-		<td>before</td>
-		<td>function</td>
-		<td>before the menu stuff starts being rendered.. run this function</td>
-	</tr>
-	<tr>
-		<td>after</td>
-		<td>function</td>
-		<td>run this function after the menu has been setup</td>
-	</tr>
-	<tr>
-		<td>change</td>
-		<td>function</td>
-		<td>when an item has been selected... this is your function</td>
-	</tr>
-</table>
-<h2>Methods</h2>
-<table>
-	<tr>
-		<td>$("select").selectmenu("position")</td>
-		<td>Resets the position of the menu. useful to combat the menu floating in the air if you hide some options
-		    based on another menu
-		</td>
-	</tr>
-	<tr>
-		<td>$("select").selectmenu("destroy")</td>
-		<td>removes the menu... but before it does it burns all your friends for being mean to it :/</td>
-	</tr>
-</table>
-<h2>Examples</h2>
-<table>
-	<tr>
-		<td colspan="2"><h3>Simple usage</h3></td>
-	</tr>
-	<tr>
-		<td>
-			<select name="select1">
+<div id="content" class="content">
+<div id="tabs" class="tabs-bottom">
+<ul>
+	<li><a href="#tabs-1">Examples</a></li>
+	<li><a href="#tabs-2">Documentation</a></li>
+	<li><a href="#tabs-3">Source</a></li>
+</ul>
+<div id="tabs-1">
+	<h2>Examples</h2>
+
+	<div class="content" style="top:40px; padding:10px;">
+		<fieldset>
+			<legend>Simple Select</legend>
+			<label><select name="select1">
 				<option value="1">select 1</option>
 				<option value="2">select 2</option>
 				<option value="3">select 3</option>
 				<option value="4">select 4</option>
 			</select>
-		</td>
-		<td>
-			<pre>
-$("select[name='select1']").selectmenu();
-			</pre>
+			</label>
+			<label>
+				<select name="select1">
+					<optgroup label="1st bunch">
+						<option value="1">select 1</option>
+						<option value="2">select 2</option>
+					</optgroup>
+					<optgroup label="2nd bunch">
+						<option value="3">select 3</option>
+						<option value="4">select 4</option>
+					</optgroup>
+				</select>
+				With optgroups
+			</label>
 
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2"><h3>Few more options included</h3></td>
-	</tr>
-	<tr>
-		<td>
-			<select name="select2">
+			<pre class="brush: js">$("select[name='select1']").selectmenu();</pre>
+		</fieldset>
+		<fieldset>
+			<legend>Simple with a callback</legend>
+			<label><select name="select2">
 				<option value="1">select 1</option>
 				<option value="2">select 2</option>
 				<option value="3">select 3</option>
 				<option value="4">select 4</option>
 			</select>
-		</td>
-		<td>
-			<pre>
-$("select[name='select2']").selectmenu({
-	direction: "down",
-	speed:1000,
-	maxHeight:200,
-	change: function(){
-		alert("value: " + $(this).val() );
-	}
-});
-			</pre>
-
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2"><h3>Advanced</h3>the publication menu defines which date items should be shown. changing the
-		                                 publication selects the next "future" date in the list
-		</td>
-	</tr>
-	<tr>
-		<td style="vertical-align:top; padding-top:20px;">
+			</label>
+					<pre class="brush: js">
+						$("select[name='select2']").selectmenu({
+							width:'200',
+							direction:'down',
+							change:function(){
+								alert("value: "+ $(this).val())
+							}
+						});</pre>
+		</fieldset>
+		<fieldset>
+			<legend>Advanced Usage</legend>
 			<select id="pID" name="pID">
 				<option value="4">Demo Publication 1</option>
 				<option value="5">Demo Publication 2</option>
 				<option value="6">Demo Publication 3</option>
 			</select>
 
-			<p></p>
+
 			<select id="dID" name="dID">
 				<optgroup label="future">
 					<option class="pub-5 future" value="83">83 | 14 January 2011</option>
@@ -297,81 +330,10 @@ $("select[name='select2']").selectmenu({
 					<option class="pub-4 past" value="71">71 | 09 December 2010</option>
 				</optgroup>
 			</select>
-			<hr>
-			<div id="log"></div>
-
-		</td>
-		<td>
-			<pre>
-var pID = $("#pID").val(), $dList = $("#dID-list");
-
-$("#dID").selectmenu({
-	width:"240px",
-	direction : 'down',
-	before: function(){
-		$(this).val($("#dID option.pub-"+pID+".future:last").val() );
-	},
-	after: function(){
-		var pID = $("#pID").val();
-		$("#dID-list li:not(.group):not(.pub-"+pID+")").hide();
-		$("#dID-list li.pub-"+pID+"").show();
-		$(this).selectmenu("position");
-	},
-	change: function(){
-		$("#log").html("#"+$(this).attr("id") + " - " + $(this).val());
-	}
-});
-
-$("#pID").selectmenu({
-	//direction: "down",
-	change: function(){
-		var pID = $(this).val();
-		$("#dID-list li:not(.group):not(.pub-"+pID+")").hide();
-		$("#dID-list li.pub-"+pID+"").show();
-		$("#dID-list li.pub-"+pID+".future:last").addClass("selected").trigger("click");
-		$("#dID").selectmenu("position");
-	}
-});
-		</pre>
-
-		</td>
-	</tr>
-</table>
-<h2>Source</h2>
-<pre id="srcpre"></pre>
-	<textarea readonly id="src">
-	</textarea>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-
-<script type="text/javascript" src="jquery.ui.selectmenu.js"></script>
-
-<script language="javascript">
-	$(document).ready(function (){
-
-		$.get("jquery.ui.selectmenu.js",function(d){
-			var h = $("#srcpre").html(d).height();
-			$("#srcpre").hide();
-			$("#src").val(d).height(h);
-		});
-
-
-		$("select[name='select1']").selectmenu();
-		$("select[name='select2']").selectmenu({
-			direction: "down",
-			speed:1000,
-			maxHeight:200,
-			change: function(){
-				alert("value: "+$(this).val());
-			}
-		});
-
+			<span id="log"></span>
+					<pre class="brush: js">
 		var pID=$("#pID").val(), $dList=$("#dID-list");
-
 		$("#dID").selectmenu({
-			width:"200px",
-			direction : 'down',
 			before: function(){
 				$(this).val($("#dID option.pub-"+pID+".future:last").val());
 			},
@@ -387,7 +349,184 @@ $("#pID").selectmenu({
 		});
 
 		$("#pID").selectmenu({
-			//direction: "down",
+			change: function(){
+				var pID=$(this).val();
+				$("#dID-list li:not(.group):not(.pub-"+pID+")").hide();
+				$("#dID-list li.pub-"+pID+"").show();
+				$("#dID-list li.pub-"+pID+".future:last").addClass("selected").trigger("click");
+				$("#dID").selectmenu("position");
+			}
+		});
+					</pre>
+		</fieldset>
+	</div>
+</div>
+<div id="tabs-2">
+	<h2>Documentation</h2>
+
+	<div class="content" style="top:40px; padding:10px;">
+		<h3>Usage</h3>
+<pre class="brush: js">
+$("select").selectmenu({
+	speed: 400,
+	maxHeight: 300,
+	direction: "auto",
+	width:"",
+	before: function(){ ... },
+	after: function(){ ... },
+	change: function(){ ... }
+});
+</pre>
+		<h4>Options</h4>
+		<table style="width:100%;">
+			<tr>
+				<th>Option</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td>Speed</td>
+				<td>numeric</td>
+				<td>animation speed (fade in/out)</td>
+			</tr>
+			<tr>
+				<td>maxHeight</td>
+				<td>numeric</td>
+				<td>the maximum height of the menu</td>
+			</tr>
+			<tr>
+				<td>direction</td>
+				<td>string</td>
+				<td>"up", "down", "auto" - if you dont want the menu to auto decide which way it must flip</td>
+			</tr>
+			<tr>
+				<td>width</td>
+				<td>numeric</td>
+				<td>if you want the menu to be a specific width. in pixels</td>
+			</tr>
+			<tr>
+				<td>before</td>
+				<td>function</td>
+				<td>before the menu stuff starts being rendered.. run this function</td>
+			</tr>
+			<tr>
+				<td>after</td>
+				<td>function</td>
+				<td>run this function after the menu has been setup</td>
+			</tr>
+			<tr>
+				<td>change</td>
+				<td>function</td>
+				<td>when an item has been selected... this is your function</td>
+			</tr>
+		</table>
+
+
+		<h3>Change log</h3>
+		<table style="width:100%;">
+			<tr>
+				<th>Version</th>
+				<th>Date</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td>0.0.5</td>
+				<td>2011-02-13</td>
+				<td>small bug fixes</td>
+			</tr>
+		</table>
+		<h3>Contact Details</h3>
+		<table style="width:400px;">
+			<tr>
+				<td style="width:20px;"><span class="ui-icon ui-icon-person"></span></td>
+				<td style="color:#999;"><em>Twitter</em></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>@awstam</td>
+			</tr>
+			<tr>
+				<td><span class="ui-icon ui-icon-mail-closed"></span></td>
+				<td style="color:#999;"><em>Email</em></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>awstam<span class="ui-icon ui-icon-mail-closed inline" style="margin-right:0;"></span>gmail.com
+				</td>
+			</tr>
+		</table>
+
+	</div>
+</div>
+
+<div id="tabs-3">
+	<h2>Source Code</h2>
+
+	<div class="content" style="top:40px;">
+
+		<script type="syntaxhighlighter" class="brush: js" id="src">
+		</script>
+	</div>
+
+</div>
+</div>
+
+
+</div>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="jquery.ui.selectmenu.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#tabs").tabs({ fx: { opacity: 'toggle' } });
+		$(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom");
+
+		$.get("jquery.ui.selectmenu.js",function(d){
+			var h=$("#content").height()-80;
+			$("#src").html('<![CDATA['+d+']]>');
+		});
+
+	});
+	SyntaxHighlighter.config.bloggerMode=true;
+	SyntaxHighlighter.defaults['toolbar']=false;
+	SyntaxHighlighter.defaults['gutter']=false;
+	SyntaxHighlighter.all();
+</script>
+<script>
+	$(document).ready(function(){
+		$("select[name='select1']").selectmenu();
+		$("select[name='select2']").selectmenu({
+			width:'200',
+			direction:'down',
+			change:function(){
+				alert("value: "+$(this).val())
+			}
+		});
+
+		var pID=$("#pID").val(), $dList=$("#dID-list");
+
+		$("#dID").selectmenu({
+			before: function(){
+				$(this).val($("#dID option.pub-"+pID+".future:last").val());
+			},
+			after: function(){
+				var pID=$("#pID").val();
+				$("#dID-list li:not(.group):not(.pub-"+pID+")").hide();
+				$("#dID-list li.pub-"+pID+"").show();
+				$(this).selectmenu("position");
+			},
+			change: function(){
+				$("#log").html("#"+$(this).attr("id")+" - "+$(this).val());
+			}
+		});
+
+		$("#pID").selectmenu({
 			change: function(){
 				var pID=$(this).val();
 				$("#dID-list li:not(.group):not(.pub-"+pID+")").hide();
@@ -397,22 +536,9 @@ $("#pID").selectmenu({
 			}
 		});
 	});
-</script>
-<script type="text/javascript">
-
-	var _gaq=_gaq||[];
-	_gaq.push(['_setAccount', 'UA-2827208-8']);
-	_gaq.push(['_trackPageview']);
-
-	(function(){
-		var ga=document.createElement('script');
-		ga.type='text/javascript';
-		ga.async=true;
-		ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';
-		var s=document.getElementsByTagName('script')[0];
-		s.parentNode.insertBefore(ga,s);
-	})();
 
 </script>
+
+
 </body>
 </html>

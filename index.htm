@@ -578,7 +578,7 @@ $("select").selectmenu({
 <script type="text/javascript" src="jquery.ui.selectmenu.js"></script>
 <script>
 	$(document).ready(function(){
-		$("#tabs").tabs({ fx: { opacity: 'toggle' } });
+		$("#tabs").tabs({ fx: { opacity: 'toggle', duration: 200 } });
 		$(".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *").removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom");
 
 		$.get("jquery.ui.selectmenu.js",function(d){

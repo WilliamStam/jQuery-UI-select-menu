@@ -249,7 +249,17 @@ table th {
 fieldset {
 	margin-bottom : 20px;
 }
-
+.item1 {
+	background-color:blue;
+	color:white;
+}
+.item2 {
+	background-color:#7fff00;
+}
+.item3 {
+	background-color:red;
+	color:white;
+}
 -->
 </style>
 
@@ -310,6 +320,18 @@ fieldset {
 								alert("value: "+ $(this).val())
 							}
 						});</pre>
+		</fieldset>
+		<fieldset>
+			<legend>Simple with class's</legend>
+			<label><select name="select3">
+				<option value="1" class="item1">select 1</option>
+				<option value="2" class="item2">select 2</option>
+				<option value="3" class="item3">select 3</option>
+				<option value="4" class="item1">select 4</option>
+			</select>
+			</label>
+					<pre class="brush: js">
+						$("select[name='select3']").selectmenu();</pre>
 		</fieldset>
 		<fieldset>
 			<legend>Advanced Usage</legend>
@@ -583,7 +605,9 @@ $("select").selectmenu({
 				alert("value: "+$(this).val())
 			}
 		});
+		$("select[name='select3']").selectmenu();
 
+		
 		var pID=$("#pID").val(), $dList=$("#dID-list");
 
 		$("#dID").selectmenu({
